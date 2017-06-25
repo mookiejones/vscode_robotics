@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 6
 before_script:
-  - npm install -g gulp gulp-cli
+  - npm install -g gulp-cli
 cache:
   directories:
     - "node_modules"
@@ -15,8 +15,6 @@ script: gulp
 notifications:
   email:
     recipients:
-    
-      - charles.berman@kukanao.com
       - charles.heath.berman@gmail.com
     on_success: always # default: change
     on_failure: always # default: always
