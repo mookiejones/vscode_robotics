@@ -1,10 +1,12 @@
-# Learn Travis [![Build Status](https://travis-ci.org/mookiejones/vscode_robotics.svg?branch=master)](https://travis-ci.org/mookiejones/vscode_robotics)  [![Dependencies](https://david-dm.org/dwyl/learn-travis.png?theme=shields.io)](https://david-dm.org/dwyl/learn-travis) [![devDependency Status](https://david-dm.org/dwyl/learn-travis/dev-status.svg)](https://david-dm.org/dwyl/learn-travis#info=devDependencies)
+# Robotics for VSCode
+ [![Build Status](https://travis-ci.org/mookiejones/vscode_robotics.svg?branch=master)](https://travis-ci.org/mookiejones/vscode_robotics)  [![Dependencies](https://david-dm.org/dwyl/learn-travis.png?theme=shields.io)](https://david-dm.org/dwyl/learn-travis) [![devDependency Status](https://david-dm.org/dwyl/learn-travis/dev-status.svg)](https://david-dm.org/dwyl/learn-travis#info=devDependencies)
 
 
-Our ***quick guide*** to **Travis CI** (*Continuous Integration*) for ***complete beginners***
+Our ***quick guide*** to **Robotics for VSCode**
 
 ## *Why*?
 
+It only seems
 Testing your work (*to be* ***sure*** *its working as expected*)
 is the most important part of a project.
 
