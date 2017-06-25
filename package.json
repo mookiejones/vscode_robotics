@@ -19,6 +19,8 @@
   ],
   "activationEvents": [
     "onCommand:extension.sayHello",
+    "onCommand:extension.showPreview",
+    "onCommand:extension.showPreviewToSide",
     "onLanguage:extension.getLang",
     "onView:jsonOutline"
   ],
@@ -76,6 +78,42 @@
     },
     "commands": [
       {
+        "command": "extension.showPreview",
+				"title": "%extension.preview.title%",
+				"category": "Fanuc",
+				"icon": {
+					"light": "./media/Preview.svg",
+					"dark": "./media/Preview_inverse.svg"
+				}
+      },
+       {
+        "command": "editor.showPreview",
+				"title": "%editor.preview.title%",
+				"category": "Fanuc",
+				"icon": {
+					"light": "./media/Preview.svg",
+					"dark": "./media/Preview_inverse.svg"
+				}
+      },
+      {
+				"command": "extension.showPreviewToSide",
+				"title": "%extension.previewSide.title%",
+				"category": "Fanuc",
+				"icon": {
+					"light": "./media/PreviewOnRightPane_16x.svg",
+					"dark": "./media/PreviewOnRightPane_16x_dark.svg"
+				}
+			},
+			{
+				"command": "extension.showSource",
+				"title": "%extension.showSource.title%",
+				"category": "Markdown",
+				"icon": {
+					"light": "./media/ViewSource.svg",
+					"dark": "./media/ViewSource_inverse.svg"
+				}
+			},
+      {
         "command": "nodeDependencies.addEntry",
         "title": "Add"
       },
@@ -105,6 +143,21 @@
       }
     ],
     "menus": {
+      "editor/title": [
+        {
+          "when": "editorLangId === fanuc",
+          "command": "extension.showPreviewToSide",
+          "alt": "editor.showPreview",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceLangId === fanuc",
+          "command": "extension.showPreview",
+          "group": "navigation"
+        }
+      ],
       "view/title": [
         {
           "command": "nodeDependencies.refreshEntry",
@@ -121,8 +174,15 @@
           "command": "nodeDependencies.deleteEntry",
           "when": "view == nodeDependencies && viewItem == dependency"
         }
+
       ]
-    }
+    },
+    "snippets": [
+      {
+        "language": "fanuc",
+        "path": "./snippets/fanuc.json"
+      }
+    ]
   },
   "scripts": {
     "gulp": "gulp",

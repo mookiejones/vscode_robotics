@@ -57,35 +57,32 @@ export function activate(context: ExtensionContext) {
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "my-first-extension" is now active!');
 
- 
-    commands.registerCommand('nodeDependencies.refreshEntry', () => nodeDependenciesProvider.refresh());
-	commands.registerCommand('nodeDependencies.addEntry', node => window.showInformationMessage('Successfully called add entry'));
-	commands.registerCommand('nodeDependencies.deleteEntry', node => window.showInformationMessage('Successfully called delete entry'));
+    context.subscriptions.push(
 
-
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with  registerCommand
-    // The commandId parameter must match the command field in package.json
-    var disposable = commands.registerCommand('extension.sayHello', () => {
+    commands.registerCommand('nodeDependencies.refreshEntry', () => nodeDependenciesProvider.refresh()),
+	commands.registerCommand('nodeDependencies.addEntry', node => window.showInformationMessage('Successfully called add entry')),
+	commands.registerCommand('nodeDependencies.deleteEntry', node => window.showInformationMessage('Successfully called delete entry')),
+    commands.registerCommand('extension.showPreview',()=>{window.showInformationMessage("ShowPreview");}),
+    commands.registerCommand('editor.showPreview',()=>{window.showInformationMessage("ShowPreview");}),
+    commands.registerCommand('extension.showPreviewToSide',()=>{
+        window.showInformationMessage("showPreviewToSide");
+    }),
+    commands.registerCommand('extension.sayHello', () => {
         // The code you place here will be executed every time your command is executed
 
         // Display a message box to the user
         window.showInformationMessage('Hello World!');
-    });
-    commands.registerCommand('extension.refresh',(a)=>{
-       
-        debugger;
-         console.log('register');
-    })
+    }),
     commands.registerCommand('extension.openJsonSelection',range=>{
         debugger;
-    })
-
+    }),
     commands.registerCommand('extension.getLang',(a)=>{
         debugger;
 
     })
- 
+
+    )
+
     workspace.onDidChangeConfiguration(listener=>{
         debugger;
     });

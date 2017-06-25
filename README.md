@@ -1,16 +1,11 @@
 # Robotics for VSCode
- [![Build Status](https://travis-ci.org/mookiejones/vscode_robotics.svg?branch=master)](https://travis-ci.org/mookiejones/vscode_robotics)  [![Dependencies](https://david-dm.org/dwyl/learn-travis.png?theme=shields.io)](https://david-dm.org/dwyl/learn-travis) [![devDependency Status](https://david-dm.org/dwyl/learn-travis/dev-status.svg)](https://david-dm.org/dwyl/learn-travis#info=devDependencies)
+ [![Build Status](https://travis-ci.org/mookiejones/vscode_robotics.svg?branch=master)](https://travis-ci.org/mookiejones/vscode_robotics) 
+ [![Dependencies](https://david-dm.org/dwyl/learn-travis.png?theme=shields.io)](https://david-dm.org/dwyl/learn-travis)  [![devDependency Status](https://david-dm.org/dwyl/learn-travis/dev-status.svg)](https://david-dm.org/dwyl/learn-travis#info=devDependencies)
 
 
 Our ***quick guide*** to **Robotics for VSCode**
 
-## *Why*?
 
-It only seems
-Testing your work (*to be* ***sure*** *its working as expected*)
-is the most important part of a project.
-
-![Toilet Roll Blocks Seat FAIL](https://raw.github.com/dwyl/learn-travis/master/images/Roll-Blocks-Toilet-Seat.jpg "Toilet Roll Blocks Seat from Closing. Fail!")
 
 > ***CI*** helps you **Test Early, Test Often** to spot "*integration issues*" *before its too late ...*  
 > **Travis CI** takes the *hassle* out of running your own CI so you can focus on your project/product!
