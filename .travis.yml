@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - 6
+before_script:
+  - npm install -g gulp-cli
+cache:
+  directories:
+    - "node_modules"
+script: gulp
+# env:
+# - MY_VAR=EverythignIsAwesome
+# - NODE_ENV=TEST
+# - secure: "TsYgfDTXM9DhteoxruftAIm9qbcVFTfBbPmi/Mv9lGkDKZ/b4pputXgbfy2On7dsu5s9Bio/P4Nri61sgVHZm6AJIsNWf2D6Ggiz94oddr0r+7dPp9yqTziPQAKNmMSzCtLff9Dl4BSOiasy/aQy5M+NrD6kXex0xjZyTIEndzk="
+# configure notifications (email, IRC, campfire etc)
+notifications:
+  email:
+    recipients:
+    
+      - charles.berman@kukanao.com
+      - charles.heath.berman@gmail.com
+    on_success: change # default: change
+    on_failure: always # default: always
+Contact GitHub API Training Shop Blog About

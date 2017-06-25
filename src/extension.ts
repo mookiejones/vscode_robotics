@@ -2,9 +2,12 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as path from 'path';
-import { workspace, window, commands, Disposable, ExtensionContext } from 'vscode';
+
+import { workspace, window, commands, Disposable, languages, ExtensionContext } from 'vscode';
 import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, TransportKind } from 'vscode-languageclient';
- 
+import ContentProvider, { encodeLocation } from './provider';
+import { DepNodeProvider } from './Robotics';
+
 
 
 import {
@@ -22,19 +25,32 @@ import {
 // your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
     const rootPath=workspace.rootPath;
+    const provider = new ContentProvider();
+    const nodeDependenciesProvider = new DepNodeProvider(rootPath);
 
-    // // The server is implemented in node
-    // let serverModule=context.asAbsolutePath(path.join('out','serverMain.js'));
-    // // The debug options for the server
-	// let debugOptions = { execArgv: ["--nolazy", "--debug=6004"] };
-	
-	// // If the extension is launched in debug mode then the debug server options are used
-	// // Otherwise the run options are used
-	// let serverOptions: ServerOptions = {
-	// 	run : { module: serverModule, transport: TransportKind.ipc },
-	// 	debug: { module: serverModule, transport: TransportKind.ipc, options: debugOptions }
-	// }
- 
+
+// register content provider for scheme `references`
+	// register document link provider for scheme `references`
+	const providerRegistrations = Disposable.from(
+		workspace.registerTextDocumentContentProvider(ContentProvider.scheme, provider),
+		languages.registerDocumentLinkProvider({ scheme: ContentProvider.scheme }, provider)
+	);
+
+	// register command that crafts an uri with the `references` scheme,
+	// open the dynamic document, and shows it in the next editor
+	const commandRegistration = commands.registerTextEditorCommand('editor.printReferences', editor => {
+		const uri = encodeLocation(editor.document.uri, editor.selection.active);
+		return workspace.openTextDocument(uri).then(doc => window.showTextDocument(doc, editor.viewColumn + 1));
+	});
+
+    context.subscriptions.push(
+            provider,
+            commandRegistration,
+            providerRegistrations
+        );
+
+    window.registerTreeDataProvider('nodeDependencies', nodeDependenciesProvider);
+
 
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
@@ -42,6 +58,10 @@ export function activate(context: ExtensionContext) {
     console.log('Congratulations, your extension "my-first-extension" is now active!');
 
  
+    commands.registerCommand('nodeDependencies.refreshEntry', () => nodeDependenciesProvider.refresh());
+	commands.registerCommand('nodeDependencies.addEntry', node => window.showInformationMessage('Successfully called add entry'));
+	commands.registerCommand('nodeDependencies.deleteEntry', node => window.showInformationMessage('Successfully called delete entry'));
+
 
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
@@ -66,6 +86,10 @@ export function activate(context: ExtensionContext) {
 
     })
  
+    workspace.onDidChangeConfiguration(listener=>{
+        debugger;
+    });
+
 
     window.onDidChangeActiveTextEditor(editor => {
         if(editor){

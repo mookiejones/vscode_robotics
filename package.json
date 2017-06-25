@@ -1,112 +1,143 @@
 {
-    "name": "fanuc",
-    "displayName": "FanucExtension",
-    "description": "",
-    "version": "0.1.0",
-    "publisher": "vscode",
-    "engines": {
-        "vscode": "^0.10.0"
+  "name": "fanuc",
+  "displayName": "FanucExtension",
+  "description": "",
+  "version": "0.1.0",
+  "publisher": "vscode",
+  "engines": {
+    "vscode": "^1.13.0"
+  },
+  "categories": [
+    "Other",
+    "Languages",
+    "Extension Packs"
+  ],
+  "activationEvents": [
+    "onCommand:extension.sayHello",
+    "onLanguage:extension.getLang",
+    "onView:jsonOutline"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "views": {
+      "explorer": [
+       {
+					"id": "nodeDependencies",
+					"name": "Robot Dependencies"
+				}
+      ]
     },
-    "categories": [
-        "Languages",
-        "Extension Packs"
+    "languages": [
+      {
+        "id": "fanuc",
+        "aliases": [
+          "Fanuc",
+          "fanuc"
+        ],
+        "extensions": [
+          ".ls"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "abb",
+        "aliases": [
+          "ABB",
+          "abb"
+        ],
+        "extensions": [
+          ".prg",
+          ".mod"
+        ],
+        "configuration": "./abb-language-configuration.json"
+      }
     ],
-    "activationEvents": [
-        "onCommand:extension.sayHello",
-        "onLanguage:extension.getLang",
-        "onView:jsonOutline"
+    "grammars": [
+      {
+        "language": "fanuc",
+        "scopeName": "source.fanuc",
+        "path": "./syntaxes/fanuc.json"
+      },
+      {
+        "language": "abb",
+        "scopeName": "source.abb",
+        "path": "./syntaxes/abb.json"
+      }
     ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "views": {
-            "explorer": [
-                {
-                    "id": "jsonOutline",
-                    "name": "Json Outline"
-                }
-            ]
-        },
-        "languages": [
-            {
-                "id": "fanuc",
-                "aliases": [
-                    "Fanuc",
-                    "fanuc"
-                ],
-                "extensions": [
-                    ".ls"
-                ],
-                "configuration": "./language-configuration.json"
-            },
-            {
-                "id": "abb",
-                "aliases": [
-                    "ABB",
-                    "abb"
-                ],
-                "extensions": [
-                    ".prg",
-                    ".mod"
-                ],
-                "configuration": "./abb-language-configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "fanuc",
-                "scopeName": "source.fanuc",
-                "path": "./syntaxes/fanuc.json"
-            },
-            {
-                "language": "abb",
-                "scopeName": "source.abb",
-                "path": "./syntaxes/abb.json"
-            }
-        ],
-        "configurationDefaults": {
-            "[fanuc]": {
-                "editor.insertSpaces": false
-            }
-        },
-        "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "Hello World"
-            },
-            {
-                "command": "extension.getLang",
-                "title": "Get Language"
-            },
-            {
-                "command": "extension.refresh",
-                "title": "Refresh"
-            }
-        ],
-        "menus": {
-            "view/title": [
-                {
-                    "command": "extension.refresh"
-                }
-            ]
-        }
+    "configurationDefaults": {
+      "[fanuc]": {
+        "editor.insertSpaces": false
+      }
     },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "mocha": "^2.3.3",
-        "@types/node": "*",
-        "@types/mocha": "^2.2.32",
-        "ajv": "^5.2.0",
-        "vscode": "^1.1.0"
-    },
-    "dependencies": {
-        "path": "^0.12.7",
-        "vscode-languageclient": "^3.3.0",
-        "vscode-languageserver": "^3.3.0"
+    "commands": [
+      {
+				"command": "nodeDependencies.addEntry",
+				"title": "Add"
+			},
+			{
+				"command": "nodeDependencies.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			},
+			{
+				"command": "nodeDependencies.deleteEntry",
+				"title": "Delete"
+			},
+      {
+        "command": "extension.sayHello",
+        "title": "Hello World"
+      },
+      {
+        "command": "extension.getLang",
+        "title": "Get Language"
+      },
+      {
+        "command": "extension.refresh",
+        "title": "Refresh"
+      }
+    ],
+    "menus": {
+      "view/title": [
+				{
+					"command": "nodeDependencies.refreshEntry",
+					"when": "view == nodeDependencies",
+					"group": "navigation"
+				},
+				{
+					"command": "nodeDependencies.addEntry",
+					"when": "view == nodeDependencies"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "nodeDependencies.deleteEntry",
+					"when": "view == nodeDependencies && viewItem == dependency"
+				}			
+      ]
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "mocha": "^2.3.3",
+    "@types/node": "*",
+    "@types/mocha": "^2.2.32",
+    "ajv": "^5.2.0",
+    "vscode": "^1.1.0"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "vscode": "^1.1.0",
+    "vscode-languageclient": "^3.3.0",
+    "vscode-languageserver": "^3.3.0"
+  }
 }
