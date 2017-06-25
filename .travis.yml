@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 6
 before_script:
-  - npm install -g gulp-cli
+  - npm install -g gulp gulp-cli
 cache:
   directories:
     - "node_modules"
@@ -18,6 +18,5 @@ notifications:
     
       - charles.berman@kukanao.com
       - charles.heath.berman@gmail.com
-    on_success: change # default: change
+    on_success: always # default: change
     on_failure: always # default: always
-Contact GitHub API Training Shop Blog About

@@ -1,4 +1,4 @@
-# Learn Travis [![Build Status](https://travis-ci.org/dwyl/learn-travis.svg?branch=master)](https://travis-ci.org/dwyl/learn-travis)  [![Dependencies](https://david-dm.org/dwyl/learn-travis.png?theme=shields.io)](https://david-dm.org/dwyl/learn-travis) [![devDependency Status](https://david-dm.org/dwyl/learn-travis/dev-status.svg)](https://david-dm.org/dwyl/learn-travis#info=devDependencies)
+# Learn Travis [![Build Status](https://travis-ci.org/mookiejones/vscode_robotics.svg?branch=master)](https://travis-ci.org/mookiejones/vscode_robotics)  [![Dependencies](https://david-dm.org/dwyl/learn-travis.png?theme=shields.io)](https://david-dm.org/dwyl/learn-travis) [![devDependency Status](https://david-dm.org/dwyl/learn-travis/dev-status.svg)](https://david-dm.org/dwyl/learn-travis#info=devDependencies)
 
 
 Our ***quick guide*** to **Travis CI** (*Continuous Integration*) for ***complete beginners***
